@@ -1,0 +1,1 @@
+export const nums = (arr:[]) => arr.join(',')

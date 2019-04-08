@@ -1,0 +1,1 @@
+export const MSG_TITLE = 'MSG_TITLE'

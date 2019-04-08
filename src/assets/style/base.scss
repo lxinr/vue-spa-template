@@ -1,0 +1,97 @@
+
+/***********flex*************/
+.flex {
+  display: flex;
+}
+
+.flex-ver {
+  display: flex;
+  flex-direction: column
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-align-start {
+  align-items: flex-start;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.flex__center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex__item {
+  flex: 1;
+}
+
+/***********text*************/
+.txt-white {
+  color: #fff;
+  opacity: 1
+}
+
+.txt-warning {
+  color: #e93030!important
+}
+
+.txt-link {
+  color: #5e87c1!important
+}
+
+.txt-highlight {
+  color: #ff8444
+}
+
+.txt-qup {
+  color: #ff3d3d
+}
+
+.txt-qdown {
+  color: #239833
+}
+
+.txt-left {
+  text-align: left
+}
+
+.txt-right {
+  text-align: right
+}
+
+.txt-center {
+  text-align: center
+}
+
+.txt-justify {
+  text-align: justify;
+  overflow: hidden
+}
+
+.txt-justify::after {
+  display: inline-block;
+  content: '';
+  overflow: hidden;
+  width: 100%;
+  height: 0
+}
+
+.txt-nowrap {
+  width: 100%;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal
+}
+
+.txt-oneline {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
