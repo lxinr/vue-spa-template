@@ -1,5 +1,6 @@
 const config = require('../config')
 const path = require('path')
+const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 // 用于将组件内的css分开打包
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -11,6 +12,13 @@ const projectDir = process.cwd()
 
 function dir(d) {
   return path.join(projectDir, d)
+}
+
+process.env.DIST_MODULE = config.disModule
+
+const clientEnvironment = {
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  'process.env.DIST_MODULE': JSON.stringify(process.env.DIST_MODULE)
 }
 
 module.exports = {
@@ -98,6 +106,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    // DefinePlugin 允许创建一个在编译时可以配置的全局常量
+    // https://webpack.docschina.org/plugins/define-plugin/
+    new webpack.DefinePlugin({
+      ...clientEnvironment
+    })
   ]
 }

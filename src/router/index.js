@@ -3,9 +3,10 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import routes from './router-map'
+import { BASE as base } from '@src/config'
 
 const router = new Router({
-  base: '/news',
+  base,
   mode: "hash",
   routes
 })

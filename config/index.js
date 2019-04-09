@@ -1,5 +1,5 @@
 const path = require('path')
-const DIST_MODULE = '/news'
+const DIST_MODULE = 'news'
 
 function base() {
   const args = [path.resolve(__dirname, '../')].concat([].slice.call(arguments))
@@ -13,6 +13,7 @@ const paths = {
 }
 
 const environment = {
+  disModule: DIST_MODULE,
   dev: {
     // Paths
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -20,11 +21,11 @@ const environment = {
   },
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, `../dist${DIST_MODULE}/index.html`),
+    index: path.resolve(__dirname, `../dist/${DIST_MODULE}/index.html`),
     // Paths
-    assetsRoot: path.resolve(__dirname, `../dist${DIST_MODULE}`),
+    assetsRoot: path.resolve(__dirname, `../dist/${DIST_MODULE}`),
     assetsSubDirectory: 'static',
-    assetsPublicPath: `${DIST_MODULE}/`
+    assetsPublicPath: `/${DIST_MODULE}/`
   }
 }
 

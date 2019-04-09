@@ -1,4 +1,4 @@
-## conven-cli 
+## vue-spa-template
  
 基于webpack4的项目构建方案，目前暂时仅有vue版本
 

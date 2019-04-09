@@ -1,0 +1,1 @@
+export const BASE = '/' + process.env.DIST_MODULE
