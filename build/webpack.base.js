@@ -2,11 +2,7 @@ const config = require('../config')
 const path = require('path')
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
-// 用于将组件内的css分开打包
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const StyleLoader = require('./styleLoader')
-// 用于将组件内的css分开打包
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // 当前项目目录
 const projectDir = process.cwd()
 
