@@ -53,10 +53,7 @@ module.exports = (env, argv) => {
         chunksSortMode: 'dependency'
       }),
       new ProgressBarPlugin({
-        format: '[:bar] ' + chalk.green.bold(':percent') + ' :msg',
-        callback: function(info) {
-          // console.log(chalk.blue('构建完成-----', JSON.stringify(info)))
-        }
+        format: '[:bar] ' + chalk.green.bold(':percent') + ' :msg'
       })
     ],
     optimization: {

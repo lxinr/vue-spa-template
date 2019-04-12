@@ -2,11 +2,7 @@ const config = require('../config')
 const path = require('path')
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
-// 用于将组件内的css分开打包
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const StyleLoader = require('./styleLoader')
-// 用于将组件内的css分开打包
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // 当前项目目录
 const projectDir = process.cwd()
 
@@ -63,6 +59,17 @@ module.exports = {
       {
         test: /\.vue$/,
         use: 'vue-loader'
+      },
+      {
+        test: /\.(js|vue|ts)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [ config.src ],
+        options: {
+          formatter: require('eslint-friendly-formatter'),
+          emitError: true,
+          failOnError: true
+        }
       },
       // 在dev环境下使用mini-css-extract-plugin会影响HMR，具体表现在修改组件内的style时不会触发热更新
       {
