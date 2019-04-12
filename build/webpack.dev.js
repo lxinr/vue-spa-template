@@ -18,7 +18,15 @@ module.exports = (env, argv) => {
       // quiet: true,
       hot: true,
       // 调试时使用history刷新不出错
-      historyApiFallback: true
+      historyApiFallback: true,
+      // https://www.webpackjs.com/configuration/stats/#stats
+      stats: {
+        assets: true,
+        builtAt: true,
+        children: false,
+        chunks: false,
+        modules: false
+      }
     },
     module: {
     },

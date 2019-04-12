@@ -60,6 +60,17 @@ module.exports = {
         test: /\.vue$/,
         use: 'vue-loader'
       },
+      {
+        test: /\.(js|vue|ts)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [ config.src ],
+        options: {
+          formatter: require('eslint-friendly-formatter'),
+          emitError: true,
+          failOnError: true
+        }
+      },
       // 在dev环境下使用mini-css-extract-plugin会影响HMR，具体表现在修改组件内的style时不会触发热更新
       {
         test: /\.css$/ig,
