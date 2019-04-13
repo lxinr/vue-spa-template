@@ -1,6 +1,7 @@
 const config = require('../config')
 const path = require('path')
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLoader = require('./styleLoader')
 // 当前项目目录
@@ -43,6 +44,9 @@ module.exports = {
     publicPath: '/'
   },
   module: {
+    // 防止 webpack 解析那些任何与给定正则表达式相匹配的文件
+    // https://www.webpackjs.com/configuration/module/#module-noparse
+    noParse: [/static/],
     rules: [
       // 增加对ts的支持
       {
@@ -118,6 +122,13 @@ module.exports = {
     // https://webpack.docschina.org/plugins/define-plugin/
     new webpack.DefinePlugin({
       ...clientEnvironment
-    })
+    }),
+    // 将静态资源拷贝到dist
+    new CopyWebpackPlugin([
+      {
+        from: config.staticDir,
+        to: path.join(config.dist, config.disModule, 'static')
+      }
+    ])
   ]
 }
