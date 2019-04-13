@@ -36,6 +36,7 @@ module.exports = {
   dist: base.call(null, paths.OUT_DIR),
   assets: base.call(null, paths.SRC + '/assets'),
   static: base.call(null, paths.OUT_DIR + '/static'),
+  staticDir: base.call(null, paths.SRC + '/static'),
   hashLength: 8,
   ...environment
 }
