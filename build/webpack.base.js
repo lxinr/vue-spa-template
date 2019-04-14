@@ -1,7 +1,7 @@
 const config = require('../config')
 const path = require('path')
 const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLoader = require('./styleLoader')
 // 当前项目目录
@@ -33,8 +33,7 @@ module.exports = {
       vue$: 'vue/dist/vue.js',
       '$src': dir('src'),
       '@src': dir('src'),
-      '$assets': dir('src/assets'),
-      '@assets': dir('src/assets'),
+      '$assets': dir('src/assets')
     },
     modules: ["node_modules"]
   },
@@ -123,12 +122,13 @@ module.exports = {
     new webpack.DefinePlugin({
       ...clientEnvironment
     }),
+    // 2019-04-14 移除该项，原因：无实际用途，且影响构建效率
     // 将静态资源拷贝到dist
-    new CopyWebpackPlugin([
-      {
-        from: config.staticDir,
-        to: path.join(config.dist, config.disModule, 'static')
-      }
-    ])
+    // new CopyWebpackPlugin([
+    //   {
+    //     from: config.staticDir,
+    //     to: path.join(config.dist, config.disModule, 'static')
+    //   }
+    // ])
   ]
 }
