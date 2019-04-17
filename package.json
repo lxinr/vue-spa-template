@@ -1,6 +1,6 @@
 {
   "name": "vue-spa-template",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "private": true,
   "config": {
     "updateVersion": false
@@ -12,7 +12,6 @@
     "dev:open": "yarn run dev --open"
   },
   "dependencies": {
-    "axios": "^0.18.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0",
@@ -26,7 +25,6 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-stage-2": "^7.0.0",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.5",
     "babel-plugin-import": "^1.11.0",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^2.0.1",
