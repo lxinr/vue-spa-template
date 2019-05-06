@@ -55,7 +55,7 @@ module.exports = (env, argv) => {
       new ProgressBarPlugin({
         format: '[:bar] ' + chalk.green.bold(':percent') + ' :msg'
       })
-    ],
+    ].concat(...(process.env.ANALYZE ? [new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)()] : [])), // 判断是否生成构建报告,
     optimization: {
       minimize: true,
       minimizer: [
