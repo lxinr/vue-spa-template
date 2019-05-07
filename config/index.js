@@ -35,8 +35,10 @@ module.exports = {
   src: base.call(null, paths.SRC),
   dist: base.call(null, paths.OUT_DIR),
   assets: base.call(null, paths.SRC + '/assets'),
-  // static: base.call(null, paths.OUT_DIR + '/static'),
-  // staticDir: base.call(null, 'static'),
+  static: base.call(null, paths.OUT_DIR + '/static'),
+  staticDir: base.call(null, paths.SRC, 'static'),
   hashLength: 8,
+  // 是否使用dllPlugin来预先抽离公共库
+  useDll: true,
   ...environment
 }

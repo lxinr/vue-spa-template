@@ -1,7 +1,6 @@
 const config = require('../config')
 const path = require('path')
 const webpack = require('webpack')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLoader = require('./styleLoader')
 // 当前项目目录

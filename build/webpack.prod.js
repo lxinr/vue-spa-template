@@ -1,5 +1,6 @@
 const path = require('path')
 const merge = require("webpack-merge")
+const webpack = require('webpack')
 // 用于将组件内的css分开打包
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // html文件处理
@@ -11,6 +12,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 // 构建时的进度条样式 https://github.com/clessg/progress-bar-webpack-plugin
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+// const CopyWebpackPlugin = require('copy-webpack-plugin')
 const chalk = require('chalk')
 
 const config = require('../config')
@@ -39,6 +41,8 @@ module.exports = (env, argv) => {
       }),
       new HtmlWebpackPlugin({
         title: '',
+        useDll: config.useDll,
+        dllPath: `${config.disModule ? '/' + config.disModule : ''}/static/dll/vendor.dll.js`,
         filename: config.build.index,
         template: 'src/template/index.html',
         dist: dir('dist'),
@@ -54,8 +58,30 @@ module.exports = (env, argv) => {
       }),
       new ProgressBarPlugin({
         format: '[:bar] ' + chalk.green.bold(':percent') + ' :msg'
-      })
-    ].concat(...(process.env.ANALYZE ? [new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)()] : [])), // 判断是否生成构建报告,
+      }),
+      // new CopyWebpackPlugin([
+      //   {
+      //     from: config.staticDir,
+      //     to: path.join(config.dist, config.disModule, 'static')
+      //   }
+      // ]),
+      // new webpack.DllReferencePlugin({
+      //   // 跟dll.config里面DllPlugin的context一致
+      //   context: path.join(__dirname, '..'),
+      //   // dll过程生成的manifest文件
+      //   manifest: require(path.join(config.static, 'dll', 'vendor-manifest.json'))
+      // })
+    ].concat(
+      ...(config.useDll ? [
+        new webpack.DllReferencePlugin({
+          // 跟dll.config里面DllPlugin的context一致
+          context: path.join(__dirname, '../src'),
+          // dll过程生成的manifest文件
+          // path.join(__dirname, '..', 'src/static', 'dll/vendor-manifest.json')
+          manifest: require(path.join(config.dist, config.disModule, 'static/dll', 'vendor-manifest.json'))
+        })
+      ] : []),
+      ...(process.env.ANALYZE ? [new(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)()] : [])), // 判断是否生成构建报告,
     optimization: {
       minimize: true,
       minimizer: [
@@ -93,5 +119,5 @@ module.exports = (env, argv) => {
         }
       }
     }
-  })  
+  })
 }
